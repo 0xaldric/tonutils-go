@@ -260,7 +260,7 @@ func loadFromCell(v any, slice *cell.Slice, skipProofBranches, skipMagic bool) e
 					}
 				default:
 					if parseType == reflect.TypeOf(&big.Int{}) {
-						x, err = loader.LoadBigInt(uint(num))
+						x, err = loader.LoadBigUInt(uint(num))
 						if err != nil {
 							return fmt.Errorf("failed to load bigint %d, err: %w", num, err)
 						}
@@ -272,7 +272,7 @@ func loadFromCell(v any, slice *cell.Slice, skipProofBranches, skipMagic bool) e
 				setVal(reflect.ValueOf(x))
 				continue
 			case num <= 256:
-				x, err := loader.LoadBigInt(uint(num))
+				x, err := loader.LoadBigUInt(uint(num))
 				if err != nil {
 					return fmt.Errorf("failed to load bigint %d, err: %w", num, err)
 				}
